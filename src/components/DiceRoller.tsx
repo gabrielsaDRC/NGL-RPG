@@ -44,11 +44,18 @@ export const DiceRoller: React.FC<DiceRollerProps> = ({
     let attackType: 'physical' | 'magical' | undefined;
     let attackValue: number | undefined;
 
+    // Calculate the attribute value based on the roll type
     if (type === 'attack') {
       attackType = character.combatPreferences.attackAttribute;
       attackValue = attackType === 'physical' 
         ? (stats?.attack || 0) 
         : (stats?.magicAttack || 0);
+    } else if (type === 'dodge' || type === 'initiative') {
+      // For dodge and initiative, use the character's agility
+      attackValue = character.attributes.agi;
+    } else if (type === 'attribute') {
+      // For attribute tests, use the selected attribute's value
+      attackValue = character.attributes[selectedAttribute];
     }
 
     const newRoll: DiceRoll = {
@@ -210,13 +217,19 @@ export const DiceRoller: React.FC<DiceRollerProps> = ({
                 <div className="text-[#00ffe1]">
                   2d10: [{roll.rolls.join('] [')}] = {roll.total}
                 </div>
-                {roll.type === 'attack' && roll.attackValue && (
+                {roll.attackValue !== undefined && (
                   <div className="text-[#00ffe1]">
-                    {roll.attackType === 'physical' ? 'Ataque Físico' : 'Ataque Mágico'}: {roll.attackValue}
+                    {roll.type === 'attack' 
+                      ? `${roll.attackType === 'physical' ? 'Ataque Físico' : 'Ataque Mágico'}`
+                      : roll.type === 'dodge'
+                      ? 'Agilidade'
+                      : roll.type === 'initiative'
+                      ? 'Agilidade'
+                      : selectedAttribute.toUpperCase()}: {roll.attackValue}
                   </div>
                 )}
                 <div className="text-[#00ff88] font-bold text-lg">
-                  Total Final: {roll.type === 'attack' && roll.attackValue ? roll.total + roll.attackValue : roll.total}
+                  Total Final: {roll.total + (roll.attackValue || 0)}
                   {roll.isCritical && ` (${(roll.total + (roll.attackValue || 0)) * 2} com crítico)`}
                 </div>
               </div>
