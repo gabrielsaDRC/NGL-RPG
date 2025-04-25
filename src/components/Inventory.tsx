@@ -5,22 +5,29 @@ import { Modal } from './Modal';
 
 interface InventoryProps {
   inventory: InventoryItem[];
+  currency: {
+    bronze: number;
+    silver: number;
+    gold: number;
+  };
   onInventoryChange: (inventory: InventoryItem[]) => void;
+  onCurrencyChange: (currency: { bronze: number; silver: number; gold: number }) => void;
   readOnly?: boolean;
 }
 
-export const Inventory: React.FC<InventoryProps> = ({ inventory, onInventoryChange, readOnly = false }) => {
+export const Inventory: React.FC<InventoryProps> = ({ 
+  inventory, 
+  currency, 
+  onInventoryChange, 
+  onCurrencyChange,
+  readOnly = false 
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<string | null>(null);
   const [deletingItem, setDeletingItem] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<ItemCategory | 'all'>('all');
   const [sortBy, setSortBy] = useState<'name' | 'category' | 'value'>('name');
-  const [currency, setCurrency] = useState({
-    bronze: 0,
-    silver: 0,
-    gold: 0
-  });
 
   const [showCurrencyInput, setShowCurrencyInput] = useState<'bronze' | 'silver' | 'gold' | null>(null);
   const [currencyInputValue, setCurrencyInputValue] = useState('');
@@ -123,7 +130,7 @@ export const Inventory: React.FC<InventoryProps> = ({ inventory, onInventoryChan
       newCurrency.gold = 0;
     }
 
-    setCurrency(newCurrency);
+    onCurrencyChange(newCurrency);
   };
 
   const handleCurrencyInputSubmit = (type: 'bronze' | 'silver' | 'gold') => {

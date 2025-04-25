@@ -46,6 +46,11 @@ function App() {
     equipment: [],
     abilities: [],
     inventory: [],
+    currency: {
+      bronze: 0,
+      silver: 0,
+      gold: 0
+    },
     titles: [],
     activeTitles: [],
     activeAbilities: [],
@@ -424,7 +429,9 @@ function App() {
         <div className="mt-8 sm:mt-10 md:mt-12">
           <Inventory
             inventory={character.inventory}
+            currency={character.currency}
             onInventoryChange={(inventory) => setCharacter(prev => ({ ...prev, inventory }))}
+            onCurrencyChange={(currency) => setCharacter(prev => ({ ...prev, currency }))}
           />
         </div>
 

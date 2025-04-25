@@ -16,6 +16,11 @@ export interface Character {
   equipment: Equipment[];
   abilities: Ability[];
   inventory: InventoryItem[];
+  currency: {
+    bronze: number;
+    silver: number;
+    gold: number;
+  };
   titles: Title[];
   activeTitles: string[];
   activeAbilities: string[];
