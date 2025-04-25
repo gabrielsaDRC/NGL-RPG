@@ -106,9 +106,7 @@ export const createDiceRollMessage = async (
         isCritical
       }
     });
-  } 
-  
-  debugger;
+  }
   
   return {
     embeds: [
@@ -187,7 +185,7 @@ export const createAbilityMessage = (
   if (ability) {
     description.push('', ...formatAbilityDetails(ability));
   }
-  
+
   if (!isDeactivation) {
     const costAbility = cost.type === 'mp' ? cost.fatigueCost : cost.mpCost;
     description.push(

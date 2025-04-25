@@ -345,8 +345,18 @@ export const ChatSystem: React.FC<ChatSystemProps> = ({ character }) => {
       const criticalClass = rollData.isCritical ? 'text-yellow-400' : '';
       
       return (
-        <div className="flex justify-center">
-          <div className="bg-[#1a1a1a] text-[#00ffe1] p-4 rounded-lg border border-[#00ffe1]/20 space-y-2 max-w-[80%]">
+        <div
+        className={`flex items-start gap-4 ${
+          message.sender_name === character.name ? 'justify-end' : 'justify-start'
+        }`}
+      >
+        <div
+          className={`max-w-[80%] ${
+            message.sender_name === character.name
+              ? 'bg-[#00ffe1]/10 text-[#00ffe1] border-[#00ffe1]/20'
+              : 'bg-[#1a1a1a] text-[#00ffe1] border-[#00ffe1]/20'
+          } p-4 rounded-lg space-y-2 border shadow-lg break-words`}
+        >
             <div className="flex items-center gap-2">
               <Dice6 size={16} className={criticalClass} />
               <span className="font-medium">{message.sender_name}</span>
