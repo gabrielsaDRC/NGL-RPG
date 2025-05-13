@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 20, 40, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 225, 0.3);
+  border-radius: 4px;
+  border: 2px solid rgba(0, 255, 225, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 225, 0.5);
+}
+
+/* Global styles */
+body {
+  background: radial-gradient(circle at center, #000000 0%, #000000 50%, #001f33 100%) fixed;
+  background-size: 200% 200%;
+  background-position: center;
+  min-height: 100vh;
+  color: #00ffe1;
+}
+
+/* Glowing text effect */
+.text-glow {
+  text-shadow: 0 0 10px rgba(0, 255, 225, 0.5);
+}
+
+/* Glowing border effect */
+.border-glow {
+  box-shadow: 0 0 15px rgba(0, 255, 225, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.border-glow:hover {
+  box-shadow: 0 0 30px rgba(0, 255, 225, 0.6);
+}
+
+/* Magical rune animation */
+.rune-animation {
+  position: relative;
+  overflow: hidden;
+}
+
+.rune-animation::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(0, 255, 225, 0.1),
+    transparent
+  );
+  transform: rotate(45deg);
+  animation: runeGlow 3s linear infinite;
+}
+
+@keyframes runeGlow {
+  0% {
+    transform: rotate(45deg) translateY(-100%);
+  }
+  100% {
+    transform: rotate(45deg) translateY(100%);
+  }
+}
+
+/* Cyberpunk card style */
+.cyber-card {
+  background: rgba(0, 20, 40, 0.95);
+  border: 2px solid #00ffe1;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 20px rgba(0, 255, 225, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.cyber-card:hover {
+  box-shadow: 0 0 30px rgba(0, 255, 225, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Neon button style */
+.neon-button {
+  background: rgba(0, 20, 40, 0.95);
+  border: 2px solid #00ffe1;
+  color: #00ffe1;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px rgba(0, 255, 225, 0.5);
+}
+
+.neon-button:hover {
+  background: rgba(0, 255, 225, 0.1);
+  box-shadow: 0 0 15px rgba(0, 255, 225, 0.5);
+  text-shadow: 0 0 10px rgba(0, 255, 225, 0.8);
+}
+
+/* Input field style */
+.cyber-input {
+  background: rgba(0, 20, 40, 0.95);
+  border: 2px solid #00ffe1;
+  color: #00ffe1;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.cyber-input:focus {
+  outline: none;
+  box-shadow: 0 0 15px rgba(0, 255, 225, 0.5);
+  border-color: #00ff88;
+}
