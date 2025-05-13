@@ -329,6 +329,29 @@ export const ChatSystem: React.FC<ChatSystemProps> = ({ character }) => {
     }
   };
 
+  const parseMarkdownToJSX = (text: string) => {
+    // Escapa HTML perigoso
+    const escapeHtml = (unsafe: string) =>
+      unsafe
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+
+    // Etapas:
+    // 1. Escapar HTML
+    // 2. Substituir \n por <br>
+    // 3. Converter **negrito**
+    // 4. Converter *itálico*
+
+    const escapedText = escapeHtml(text)
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/\n/g, '<br />');
+
+    return <span dangerouslySetInnerHTML={{ __html: escapedText }} />;
+  };
+
+
   const renderMessage = (message: Message) => {
     if (message.sender_type === 'system') {
       return (
@@ -415,7 +438,7 @@ export const ChatSystem: React.FC<ChatSystemProps> = ({ character }) => {
               })}
             </span>
           </div>
-          <p className="whitespace-pre-wrap leading-relaxed">{message.content}</p>
+          <p className="whitespace-pre-wrap leading-relaxed">{parseMarkdownToJSX(message.content)}</p>
         </div>
       </div>
     );
