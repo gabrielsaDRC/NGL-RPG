@@ -392,7 +392,7 @@ export const EquipmentGrid: React.FC<EquipmentGridProps> = ({
                             group relative overflow-hidden
                             bg-[#001830] p-6 rounded-xl border-2 transition-all duration-500 cursor-pointer
                             ${rarityStyle.borderColor} ${rarityStyle.glowColor}
-                            hover:scale-105 hover:z-10
+                            hover:z-10
                             ${isHovered ? 'shadow-[0_0_30px_rgba(0,255,225,0.6)]' : ''}
                           `}
                           onClick={() => handleEquipItem(item)}
@@ -498,7 +498,9 @@ export const EquipmentGrid: React.FC<EquipmentGridProps> = ({
 
                           {/* Selection Glow Effect */}
                           {isHovered && (
-                            <div className="absolute inset-0 rounded-xl border-2 border-[#00ff88] animate-pulse pointer-events-none" />
+                            <div className="absolute inset-0 rounded-xl border-2 border-[#00ff88] pointer-events-none">
+                              <div className="absolute inset-0 bg-[#00ff88]/5 rounded-xl animate-pulse" />
+                            </div>
                           )}
                         </div>
                       );

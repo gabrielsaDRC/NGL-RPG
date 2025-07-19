@@ -486,7 +486,14 @@ export const EquipmentSection: React.FC<EquipmentProps> = ({
                 </h4>
                 <div className="grid grid-cols-3 gap-4">
                   <button
-                    onClick={() => setNewItem(prev => ({ ...prev, type: 'weapon', category: 'weapon' }))}
+                    onClick={() => {
+                      setNewItem(prev => ({ 
+                        ...prev, 
+                        type: 'weapon', 
+                        category: 'weapon',
+                        damageType: prev.damageType || 'physical'
+                      }));
+                    }}
                     className={`
                       group relative p-6 rounded-xl border-2 transition-all duration-300
                       ${newItem.type === 'weapon'
@@ -506,7 +513,14 @@ export const EquipmentSection: React.FC<EquipmentProps> = ({
                   </button>
 
                   <button
-                    onClick={() => setNewItem(prev => ({ ...prev, type: 'armor', category: 'armor' }))}
+                    onClick={() => {
+                      setNewItem(prev => ({ 
+                        ...prev, 
+                        type: 'armor', 
+                        category: 'armor',
+                        damageType: undefined
+                      }));
+                    }}
                     className={`
                       group relative p-6 rounded-xl border-2 transition-all duration-300
                       ${newItem.type === 'armor'
@@ -526,7 +540,14 @@ export const EquipmentSection: React.FC<EquipmentProps> = ({
                   </button>
 
                   <button
-                    onClick={() => setNewItem(prev => ({ ...prev, type: 'accessory', category: 'ring' }))}
+                    onClick={() => {
+                      setNewItem(prev => ({ 
+                        ...prev, 
+                        type: 'accessory', 
+                        category: 'ring',
+                        damageType: undefined
+                      }));
+                    }}
                     className={`
                       group relative p-6 rounded-xl border-2 transition-all duration-300
                       ${newItem.type === 'accessory'
@@ -566,7 +587,15 @@ export const EquipmentSection: React.FC<EquipmentProps> = ({
                     <div className="relative">
                       <select
                         value={newItem.category}
-                        onChange={(e) => setNewItem(prev => ({ ...prev, category: e.target.value as EquipmentCategory }))}
+                        onChange={(e) => {
+                          const newCategory = e.target.value as EquipmentCategory;
+                          setNewItem(prev => ({ 
+                            ...prev, 
+                            category: newCategory,
+                            // Reset damage type if switching to non-weapon
+                            ...(EQUIPMENT_CATEGORIES[newCategory].type !== 'weapon' && { damageType: undefined })
+                          }));
+                        }}
                         className="w-full bg-[#001830] text-[#00ffe1] border border-[#00ffe1] rounded-lg p-3 focus:border-[#00ff88] focus:shadow-[0_0_20px_#00ffe1] transition-all appearance-none"
                       >
                         {Object.entries(EQUIPMENT_CATEGORIES)
@@ -610,7 +639,10 @@ export const EquipmentSection: React.FC<EquipmentProps> = ({
                       <label className="block text-[#00ffe1] mb-2 font-medium">Tipo de Dano</label>
                       <div className="grid grid-cols-2 gap-2">
                         <button
-                          onClick={() => setNewItem(prev => ({ ...prev, damageType: 'physical' }))}
+                          onClick={() => setNewItem(prev => ({ 
+                            ...prev, 
+                            damageType: 'physical' 
+                          }))}
                           className={`
                             flex items-center justify-center gap-2 p-3 rounded-lg border transition-all
                             ${newItem.damageType === 'physical'
@@ -623,7 +655,10 @@ export const EquipmentSection: React.FC<EquipmentProps> = ({
                           Físico
                         </button>
                         <button
-                          onClick={() => setNewItem(prev => ({ ...prev, damageType: 'magical' }))}
+                          onClick={() => setNewItem(prev => ({ 
+                            ...prev, 
+                            damageType: 'magical' 
+                          }))}
                           className={`
                             flex items-center justify-center gap-2 p-3 rounded-lg border transition-all
                             ${newItem.damageType === 'magical'
