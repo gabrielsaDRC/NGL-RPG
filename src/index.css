@@ -1,0 +1,353 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(-5deg);
+  }
+  75% {
+    transform: translateY(-15px) rotate(3deg);
+  }
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(0, 255, 225, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 255, 225, 0.6);
+  }
+}
+
+@keyframes magical-sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+}
+
+@keyframes energy-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes runeGlow {
+  0% {
+    transform: rotate(45deg) translateY(-100%);
+  }
+  100% {
+    transform: rotate(45deg) translateY(100%);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-shine {
+  animation: shine 1.5s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-magical-sparkle {
+  animation: magical-sparkle 2s ease-in-out infinite;
+}
+
+.animate-energy-flow {
+  animation: energy-flow 3s ease-in-out infinite;
+  background-size: 200% 200%;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 20, 40, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 225, 0.3);
+  border-radius: 4px;
+  border: 2px solid rgba(0, 255, 225, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 225, 0.5);
+}
+
+/* Global styles */
+body {
+  background: radial-gradient(circle at center, #000000 0%, #000000 50%, #001f33 100%) fixed;
+  background-size: 200% 200%;
+  background-position: center;
+  min-height: 100vh;
+  color: #00ffe1;
+  overflow-x: hidden;
+}
+
+/* Enhanced magical effects */
+.magical-border {
+  position: relative;
+  overflow: hidden;
+}
+
+.magical-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #00ffe1, #00ff88, #0088ff, #8800ff, #ff0088, #ff8800, #00ffe1);
+  background-size: 400% 400%;
+  animation: energy-flow 4s ease-in-out infinite;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.magical-glow {
+  filter: drop-shadow(0 0 10px rgba(0, 255, 225, 0.5));
+  transition: filter 0.3s ease;
+}
+
+.magical-glow:hover {
+  filter: drop-shadow(0 0 20px rgba(0, 255, 225, 0.8));
+}
+
+/* Glowing text effect */
+.text-glow {
+  text-shadow: 0 0 10px rgba(0, 255, 225, 0.5);
+}
+
+/* Glowing border effect */
+.border-glow {
+  box-shadow: 0 0 15px rgba(0, 255, 225, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.border-glow:hover {
+  box-shadow: 0 0 30px rgba(0, 255, 225, 0.6);
+}
+
+/* Magical rune animation */
+.rune-animation {
+  position: relative;
+  overflow: hidden;
+}
+
+.rune-animation::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(0, 255, 225, 0.1),
+    transparent
+  );
+  transform: rotate(45deg);
+  animation: runeGlow 3s linear infinite;
+}
+
+/* Enhanced magical particle effects */
+.magical-particles {
+  position: relative;
+  overflow: hidden;
+}
+
+.magical-particles::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(0, 255, 225, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0, 255, 136, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(0, 136, 255, 0.3) 0%, transparent 50%);
+  animation: magical-sparkle 4s ease-in-out infinite;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+/* Cyberpunk card style */
+.cyber-card {
+  background: rgba(0, 20, 40, 0.95);
+  border: 2px solid #00ffe1;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 20px rgba(0, 255, 225, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.cyber-card:hover {
+  box-shadow: 0 0 30px rgba(0, 255, 225, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Neon button style */
+.neon-button {
+  background: rgba(0, 20, 40, 0.95);
+  border: 2px solid #00ffe1;
+  color: #00ffe1;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px rgba(0, 255, 225, 0.5);
+}
+
+.neon-button:hover {
+  background: rgba(0, 255, 225, 0.1);
+  box-shadow: 0 0 15px rgba(0, 255, 225, 0.5);
+  text-shadow: 0 0 10px rgba(0, 255, 225, 0.8);
+}
+
+/* Input field style */
+.cyber-input {
+  background: rgba(0, 20, 40, 0.95);
+  border: 2px solid #00ffe1;
+  color: #00ffe1;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.cyber-input:focus {
+  outline: none;
+  box-shadow: 0 0 15px rgba(0, 255, 225, 0.5);
+  border-color: #00ff88;
+}
+
+/* Magical text gradient */
+.magical-text {
+  background: linear-gradient(90deg, #00ffe1, #00ff88, #00ffe1);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: energy-flow 3s linear infinite;
+}
+
+/* Magical button */
+.magical-button {
+  position: relative;
+  overflow: hidden;
+  background: rgba(0, 20, 40, 0.95);
+  border: 2px solid #00ffe1;
+  color: #00ffe1;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.magical-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 225, 0.2), transparent);
+  transition: all 0.5s ease;
+  z-index: -1;
+}
+
+.magical-button:hover {
+  box-shadow: 0 0 20px rgba(0, 255, 225, 0.5);
+  transform: translateY(-2px);
+}
+
+.magical-button:hover::before {
+  left: 100%;
+  transition: all 0.5s ease;
+}
+
+/* Ensure chat container doesn't interfere with page scroll */
+.chat-container {
+  position: relative;
+  z-index: 1;
+  contain: layout;
+}
+
+/* Prevent scroll issues when chat is expanded */
+.chat-expanded {
+  contain: layout style;
+}
+
+/* Isolate chat scroll from main page scroll */
+.chat-container .scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 255, 225, 0.3) rgba(26, 26, 26, 0.3);
+}
+
+.chat-container .scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-container .scrollbar-thin::-webkit-scrollbar-track {
+  background: rgba(26, 26, 26, 0.3);
+  border-radius: 3px;
+}
+
+.chat-container .scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 225, 0.3);
+  border-radius: 3px;
+}
+
+.chat-container .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 225, 0.5);
+}
